@@ -7,11 +7,19 @@
         <label for="title">Title:</label><br>
         <input type="text" id="title" name="title"><br>
         <label for="description">Description:</label><br>
-        <input type="text" id="description" name="description"><br>
+        <input style="width:70%;" type="text" id="description" name="description"><br>
         <label for="category">Category:</label><br>
-        <input type="text" id="category" name="category"><br>
+        <select name="category" id="category" type="select">
+            <option value="nba">NBA</option>
+            <option value="nfl">NFL</option>
+            <option value="tv">TV</option>
+            <option value="movies">Movies</option>
+            <option value="anime">Anime</option>
+            <option value="gaming">Gaming</option>
+            <option value="ramblings">Ramblings</option>
+        </select><br>
         <label for="tags">Tags:</label><br>
-        <input type="text" id="tags" name="tags"><br>
+        <input type="text" style="width:70%;" id="tags" name="tags"><br>   
         <label for="article">Article:</label><br>
         <textarea style="width:70%;height:250px" id="article" name="article"></textarea><br>
         <label for="imageUrl">ImageUrl:</label><br>
