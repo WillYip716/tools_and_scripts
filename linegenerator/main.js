@@ -1,6 +1,6 @@
 function compileLines(){
 
-    let parser = new RegExp(/([A-Za-z0-9 ]*)\sat\s([A-Za-z ]*)\((\+|\-)([0-9.]*),\s([0-9.]*)\)/);
+    let parser = new RegExp(/([A-Za-z0-9 ]*)\sat\s([A-Za-z0-9 ]*)\s\((\+|\-)([0-9.]*),\s([0-9.]*)\)/);
 
 
     let linesArr = document.getElementById("inputarea").value.split("\n");
@@ -15,6 +15,7 @@ function compileLines(){
 
     let selectDiv1, selectDiv2, spreadOption1, spreadOption2, over, under, parsedLine,lineTitle;
     for(let i = 0; i < linesArr.length; i++){
+        console.log(linesArr[i]);
         parsedLine = linesArr[i].match(parser);
         console.log(parsedLine);
         selectDiv1 = document.createElement("select");
