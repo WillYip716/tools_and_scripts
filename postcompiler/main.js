@@ -1,11 +1,8 @@
 function compilepost(){
 
-//let complilepost = function(){
 
-
-
-    let title = "'" + document.getElementById("title").value+"'";
-    let description = "'" + document.getElementById("description").value +"'";
+    let title = "'" + escape(document.getElementById("title").value) +"'";
+    let description = "'" + escape(document.getElementById("description").value) +"'";
     let date = "Date.now()";
 
 
