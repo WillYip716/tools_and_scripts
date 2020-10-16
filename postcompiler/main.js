@@ -27,6 +27,6 @@ function compilepost(){
 
 
 
-    alert(compiledString);
+    console.log(compiledString);
 }
 
