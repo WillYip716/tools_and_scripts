@@ -2,6 +2,11 @@ const puppeteer = require('puppeteer');
 const $ = require('cheerio');
 const url = 'https://www.espn.com/nfl/lines';
 
+let teams = "";
+let spread = "";
+let overunder = "";
+let lines = [];
+
 puppeteer
   .launch()
   .then(function(browser) {
@@ -13,18 +18,33 @@ puppeteer
     });
   })
   .then(function(html) {
-    $('tbody tr', html).each(function() {
-        //console.log($(this).text());
-      let field = $(this).find("td");
-      console.log($(field[0]).text());
-      console.log($(field[2]).text());
-      //console.log($(field[0]).find("td").text());
-      //console.log($(field[1]).find("td").text());
-      /*let data1 = $(field[0]).find("td")[2].text();
-      let data2 = $(field[1]).find("td")[2].text();
-      console.log(data1);
-      console.log(data2);*/
+    $('tbody tr', html).each((index,element) => {
+        
+        let field = $(element).find("td");
+        if(index%2==0){
+          teams = $(field[0]).text();
+          if($(field[2]).text().charAt(0) == "-"){
+            spread = "+" + $(field[2]).text().slice(1);
+          }
+          else{
+            overunder = $(field[2]).text();
+          }
+        }
+        else{
+          teams = teams + " at " + $(field[0]).text();
+          if($(field[2]).text().charAt(0) == "-"){
+            spread = $(field[2]).text();
+          }
+          else{
+            overunder = $(field[2]).text();
+          }
+          lines.push(teams + " (" +spread+ ", " + overunder+")");
+        }
+        
     });
+    for (let i = 0; i < lines.length; i++) {
+      console.log(lines[i]);
+    }
   })
   .catch(function(err) {
     //handle error
