@@ -1,51 +1,51 @@
-const puppeteer = require('puppeteer');
-const $ = require('cheerio');
-const url = 'https://www.espn.com/nfl/lines';
+const axios = require('axios')
+require('dotenv').config()
 
-let teams = "";
-let spread = "";
-let overunder = "";
-let lines = [];
 
-puppeteer
-  .launch()
-  .then(function(browser) {
-    return browser.newPage();
-  })
-  .then(function(page) {
-    return page.goto(url).then(function() {
-      return page.content();
-    });
-  })
-  .then(function(html) {
-    $('tbody tr', html).each((index,element) => {
-        
-        let field = $(element).find("td");
-        if(index%2==0){
-          teams = $(field[0]).text();
-          if($(field[2]).text().charAt(0) == "-"){
-            spread = "+" + $(field[2]).text().slice(1);
-          }
-          else{
-            overunder = $(field[2]).text();
-          }
-        }
-        else{
-          teams = teams + " at " + $(field[0]).text();
-          if($(field[2]).text().charAt(0) == "-"){
-            spread = $(field[2]).text();
-          }
-          else{
-            overunder = $(field[2]).text();
-          }
-          lines.push(teams + " (" +spread+ ", " + overunder+")");
-        }
-        
-    });
-    for (let i = 0; i < lines.length; i++) {
-      console.log(lines[i]);
+// An api key is emailed to you when you sign up to a plan
+const api_key = process.env.KEY;
+// To get odds for a sepcific sport, use the sport key from the last request
+//   or set sport to "upcoming" to see live and upcoming across all sports
+let sport_key = 'basketball_nba'
+
+axios.get('https://api.the-odds-api.com/v3/odds', {
+    params: {
+        api_key: api_key,
+        sport: sport_key,
+        region: 'us', // uk | us | eu | au
+        mkt: 'spreads' // h2h | spreads | totals
     }
-  })
-  .catch(function(err) {
-    //handle error
-  });
+}).then(response => {
+    let temparr, odds, homeindex,awayindex;
+    
+    response.data.data.forEach(element => {
+
+        temparr = element.sites;
+        
+        if(element.home_team == element.teams[0]){
+            homeindex = 0;
+            awayindex = 1;
+        }else{
+            homeindex = 1;
+            awayindex = 0;
+        }
+
+        odds = temparr.find((i) => (i.site_key == "draftkings")).odds.spreads.points[homeindex];
+        if(odds.indexOf("-") == -1){
+            odds = "+" + odds;
+        }
+
+        console.log(element.teams[awayindex] + " @ " + element.teams[homeindex] + "(" + odds + ")");
+
+
+    });
+
+    //usage
+    console.log('Remaining requests',response.headers['x-requests-remaining'])
+    console.log('Used requests',response.headers['x-requests-used'])
+
+})
+.catch(error => {
+    console.log('Error status', error.response.status)
+    console.log(error.response.data)
+})
