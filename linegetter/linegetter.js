@@ -36,8 +36,6 @@ axios.get('https://api.the-odds-api.com/v3/odds', {
         }
 
         console.log(element.teams[awayindex] + " @ " + element.teams[homeindex] + "(" + odds + ")");
-
-
     });
 
     //usage
