@@ -37,10 +37,10 @@ codes =   {
     "Utah Jazz" 	        :"UTA", 
     "Washington Wizards"	:"WAS", 
 }
-spreadrecord = {"wins":0,"losses":0,"push":0};
+spreadrecord = {"wins":0,"losses":0,"push":0}
 
 
-predictions = "Orlando%20Magic%20@%20Detroit%20Pistons%28-2.0%29%20%7C%20Orlando%20Magic+2.0%0AIndiana%20Pacers%20@%20Washington%20Wizards%28-4.5%29%20%7C%20Washington%20Wizards-4.5%0AGolden%20State%20Warriors%20@%20New%20Orleans%20Pelicans%28-2.5%29%20%7C%20New%20Orleans%20Pelicans-2.5%0APortland%20Trail%20Blazers%20@%20Atlanta%20Hawks%28-2.5%29%20%7C%20Portland%20Trail%20Blazers+2.5%0ANew%20York%20Knicks%20@%20Memphis%20Grizzlies%28-3.5%29%20%7C%20New%20York%20Knicks+3.5%0APhiladelphia%2076ers%20@%20Chicago%20Bulls%28+6.0%29%20%7C%20Philadelphia%2076ers-6.0%0ASan%20Antonio%20Spurs%20@%20Utah%20Jazz%28-7.5%29%20%7C%20San%20Antonio%20Spurs+7.5%0ADenver%20Nuggets%20@%20Los%20Angeles%20Lakers%28+5.0%29%20%7C%20Denver%20Nuggets-5.0"
+predictions = "Boston%20Celtics%20%40%20Orlando%20Magic(%2B11.5)%20%7C%20Orlando%20Magic%2B11.5%0APortland%20Trail%20Blazers%20%40%20Cleveland%20Cavaliers(%2B12.0)%20%7C%20Portland%20Trail%20Blazers-12.0%0AMemphis%20Grizzlies%20%40%20Minnesota%20Timberwolves(%2B3.5)%20%7C%20Minnesota%20Timberwolves%2B3.5%0APhoenix%20Suns%20%40%20Atlanta%20Hawks(%2B1.0)%20%7C%20Hawks%2B1.0%0APhiladelphia%2076ers%20%40%20Houston%20Rockets(%2B14.5)%20%7C%20Philadelphia%2076ers-14.5%0ASacramento%20Kings%20%40%20Indiana%20Pacers(-6.5)%20%7C%20Indiana%20Pacers-6.5%0AWashington%20Wizards%20%40%20Milwaukee%20Bucks(-3.5)%20%7C%20Milwaukee%20Bucks-3.5%0ANew%20York%20Knicks%20%40%20Denver%20Nuggets(-4.0)%20%7C%20Denver%20Nuggets-4.0%0ASan%20Antonio%20Spurs%20%40%20Utah%20Jazz(-6.5)%20%7C%20Utah%20Jazz-6.5"
 
 predictions = urllib.parse.unquote(predictions)
 

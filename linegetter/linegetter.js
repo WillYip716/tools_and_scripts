@@ -30,7 +30,14 @@ axios.get('https://api.the-odds-api.com/v3/odds', {
             awayindex = 0;
         }
 
-        odds = temparr.find((i) => (i.site_key == "draftkings")).odds.spreads.points[homeindex];
+        odds = temparr.find((i) => (i.site_key == "draftkings"))
+        if(odds){
+            odds = odds.odds.spreads.points[homeindex];
+        }
+        else{
+            console.log("no draft kings");
+            odds = temparr[0].odds.spreads.points[homeindex];
+        }
         if(odds.indexOf("-") == -1){
             odds = "+" + odds;
         }
