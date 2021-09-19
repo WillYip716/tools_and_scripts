@@ -3,12 +3,22 @@ from bs4 import BeautifulSoup
 import csv
 
 
-url = 'https://hashtagbasketball.com/fantasy-basketball-projections'
+
+with open('bballprojections.html', 'r') as f:
+
+    contents = f.read()
+
+    soup = BeautifulSoup(contents, 'html.parser')
+
+
+"""url = 'https://hashtagbasketball.com/fantasy-basketball-projections'
 r = requests.get(url)
 soup = BeautifulSoup(r.text, 'html.parser')
 
 league_table = soup.find('table', id = 'ContentPlaceHolder1_GridView1')
+"""
 
+league_table = soup.find('tbody')
 output = []
 
 for player in league_table.find_all('tr'):
@@ -63,7 +73,7 @@ for player in league_table.find_all('tr'):
             output.append(p)
 
 keys = output[0].keys()
-with open('fantasyprojections2021.csv', 'w', newline='')  as output_file:
+with open('fantasyprojections2021v2.csv', 'w', newline='')  as output_file:
         dict_writer = csv.DictWriter(output_file, keys)
         dict_writer.writeheader()
         dict_writer.writerows(output)
